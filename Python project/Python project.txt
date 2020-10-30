@@ -1,0 +1,30 @@
+import pandas as pd 
+df = pd.read_excel('region.xlsx', sheet_name='International Monthly Visitor A')
+df2= df[''].str.split(' ', n = 2, expand = True)
+df2.head()
+df=df.assign(year=df2[1])
+df=df.assign(month=df2[2])
+df.head()
+df['year'] = pd.to_numeric(df['year'])
+df2 = df[(df['year'] >=2008) & (df['year']<=2017)]
+del df["Switzerland"]
+del df["Belgium & Luxembourg"]
+del df["Greece"]
+del df["Saudi Arabia"]
+del df["Kuwait"]
+del df["UAE"]
+del df["United Kingdom"]
+del df["Germany"]
+del df["France"]
+del df["Italy"]
+del df["Netherlands"]
+del df["Austria"]
+del df["Scandinavia"]
+del df["CIS & Eastern Europe"]
+del df["Canada"]
+del df["Australia"]
+del df["New Zealand"]
+del df["Africa"]
+df['year'] = pd.to_numeric(df['year'])
+df2 = df[(df['year'] >=2008) & (df['year']<=2017)]
+ax = df['year'].plot(kind='hist', title="country in Asian"), figsize=(10,10), legend=True, footsize=12)
